@@ -1,0 +1,19 @@
+@use '../abstracts';
+
+.site-heading {
+    margin-top: 2.625rem;
+    margin-bottom: 1.0625rem;
+    color: abstracts.$color-logo;
+    font-family: abstracts.$ff-title;
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-align: center;
+  }
+  
+  .site-heading svg {
+    display: block;
+    width: 3.25rem;
+    height: 2.9375rem;
+    margin: 0 auto;
+    fill: abstracts.$color-logo;
+  }

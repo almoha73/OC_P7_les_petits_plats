@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"name": "p7_nouveau",
+			"path": "..\\.."
+		}
+	],
+	"settings": {
+		"liveServer.settings.port": 5502
+	}
+}

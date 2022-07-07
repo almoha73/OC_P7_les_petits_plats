@@ -1,0 +1,69 @@
+@use '../abstracts';
+
+// RECIPE CARD
+.card{
+    width: 380px;
+    max-height: 364px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    img{
+        width: 100%;
+        border-radius: 6px;
+    }
+    .cardBody-first{
+        width: 95%;
+        margin: auto;
+        
+        .card-body-first{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            
+            & h5.card-title{
+                width: 65%;
+                font-size: 24px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+            & .time-icon{
+                display: flex;
+                justify-content: flex-end;
+                width: 35%;
+                align-items: center;
+                span{
+                    margin-left: 5px;
+                }
+                
+                
+            }
+        }
+    }
+    .cardBody-second{
+        overflow: hidden;
+        width: 95%;
+        margin: auto;
+      .card-body-second{
+          display: flex;
+          gap: 10px;
+          .card-text-first{
+              width: 50%;
+              p{
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+              }    
+                
+          }
+          .card-text-second{
+              width: 50%;
+          }
+      }
+    }
+    
+}

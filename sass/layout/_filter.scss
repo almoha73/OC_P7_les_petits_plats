@@ -1,0 +1,49 @@
+@use '../abstracts';
+
+/* FILTERS LIST */
+
+h1.erreur{
+  display: none;
+  text-align: center;
+  margin-bottom: 10px;
+  color: abstracts.$color-ustensil
+}
+
+.filters-list {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0;
+    gap: 1rem;
+    list-style: none;
+  }
+  
+  .filter-list__item {
+    padding: 0.625rem 3.4375rem 0.625rem 1.25rem;
+    background-color: transparent;
+    background-image: url("../images/cross.svg");
+    background-position: center right 22px;
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    border-radius: 5px;
+    color: abstracts.$color-white;
+    cursor: pointer;
+    font-family: abstracts.$ff-text-alt;
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.05rem;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  
+  .filter-list__item-ingredients {
+    background-color: abstracts.$color-ingredient;
+  }
+  
+  .filter-list__item-appliances {
+    background-color: abstracts.$color-appliance;
+  }
+  
+  .filter-list__item-ustensils {
+    background-color: abstracts.$color-ustensil;
+  }
