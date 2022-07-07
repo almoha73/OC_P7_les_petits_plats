@@ -46,7 +46,7 @@ const getSearchTerm = () => {
   return value
 }
 
-let tagArray = []
+let tagArray = [AllIds]
 let tagArrayAll = []
 // construction d'un tableau d'ids et de l'objet correspondant
 const makeIdArray = () => {
@@ -66,16 +66,22 @@ const makeIdArray = () => {
         }  
          console.log(tagArrayAll);
          
-         console.log(tagArray);
+        
           tagArray.push(filterElementId)
           console.log(tagArray);
-          let intersection = globalFunctions.intersect(tagArray)
+          const newArr = Array.from(new Set(tagArray.map(JSON.stringify)), JSON.parse)
+          console.log(newArr.length);
+          if(newArr.length === 3){
+            newArr.splice(1,1)
+          }
+          console.log(newArr);
+          let intersection = globalFunctions.intersect(newArr)
           console.log(intersection);
           
           recipesArray = globalFunctions.newIntersectionObj(intersection, recipesArray)
           console.log(recipesArray);
           console.log({tagArray, recipesArray});
-        return {tagArray, recipesArray}      
+        return {newArr, recipesArray}      
 }
 
 // display par défaut des 50 recettes
@@ -94,7 +100,7 @@ const updateRecipe = (fn) => {
 }
 
 
-console.log(tagArray)
+
 
 
 //recherche de la valeur de la liste cliquée
@@ -116,15 +122,20 @@ export const filterTag = (datas, value) => {
   }  
   filterElementId = filterElementId.flat()
     console.log(filterElementId);
-   
     
   tagArray.push(filterElementId)
   console.log(tagArray);
-  tagArrayAll = globalFunctions.intersect(tagArray)
+  const newArr = Array.from(new Set(tagArray.map(JSON.stringify)), JSON.parse)
+  console.log(newArr);
+  if(newArr.length > 3){
+    newArr.splice(1,1)
+  }
+  console.log(newArr);
+  tagArrayAll = globalFunctions.intersect(newArr)
   console.log(tagArrayAll);
   recipesArray = globalFunctions.newIntersectionObj(tagArrayAll, recipesArray)
   console.log(recipesArray);
-  return{tagArrayAll, recipesArray}
+  return{newArr, recipesArray}
 }
 
 
