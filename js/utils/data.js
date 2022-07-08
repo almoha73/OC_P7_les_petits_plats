@@ -1,4 +1,3 @@
-
 import { Ingredients } from "../factory/Ingredients.js";
 
 import { Appareil } from "../factory/Appareil.js";
@@ -8,24 +7,20 @@ import { TextCard } from "../factory/text.js";
 //import { globalFunctions } from "./globalFunctions.js";
 import { variables } from "./variables.js";
 
-
-let recettes = variables.recettes
+let recettes = variables.recettes;
 export let AllIds = [];
 export let ingredientsArray = [];
 export let appareils = [];
 export let ustensiles = [];
-export let recipeTextArray = []
-
+export let recipeTextArray = [];
 
 export function loadData() {
-    
   recettes.forEach((elt) => {
     makeID(elt);
     makeText(elt);
     makeIngredient(elt);
     makeUstensils(elt);
     makeAppareil(elt);
-    
   });
   return {
     ingredientsArray,
@@ -38,7 +33,6 @@ export function loadData() {
 }
 
 console.log(ingredientsArray);
-
 
 function makeID(recipe) {
   const { id } = recipe;
@@ -57,25 +51,20 @@ function makeText(recipe) {
         .concat(",")
         .concat(i)
         .concat(",")
-        .concat(description.toLowerCase())
+        .concat(description.toLowerCase()),
+      { ...recipe }
     )
   );
 }
 
 function makeIngredient(recipe) {
-  const { id, ingredients } = recipe;
-  for (let i of ingredients) {
-    const ingred = getIngredients(i.ingredient);
-    if (ingred != undefined) {
-      ingred.id.push(id);
-    } else {
-      ingredientsArray.push(new Ingredients(i.ingredient, [id]));
-    }
-  }
-
-  function getIngredients(string) {
-    return ingredientsArray.find((e) => e.name === string);
-  }
+   const { ingredients, id } = recipe;
+   for (let i of ingredients) {
+    //console.log(i.ingredient);
+    ingredientsArray.push(new Ingredients(i.ingredient, id, {...recipe}));
+   }
+   
+  
 }
 
 function makeUstensils(recipe) {
@@ -85,7 +74,7 @@ function makeUstensils(recipe) {
     if (ustens != null) {
       ustens.id.push(id);
     } else {
-      const ust = new Ustensils(u, [id]);
+      const ust = new Ustensils(u, [id], { ...recipe });
       ustensiles.push(ust);
     }
   }
@@ -100,11 +89,10 @@ function makeAppareil(recipe) {
   if (app != undefined) {
     app.id.push(id);
   } else {
-    const appl = new Appareil(appliance, [id]);
+    const appl = new Appareil(appliance, [id], { ...recipe });
     appareils.push(appl);
   }
   function getAppareil(string) {
     return appareils.find((e) => e.name === string);
   }
 }
-

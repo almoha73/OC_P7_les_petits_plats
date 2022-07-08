@@ -71,8 +71,9 @@ export const globalFunctions = {
 
   // Fonction générale pour enlever les doublons d'un array d'objets
   duplicateRemove(array) {
-    let newArray = [...new Set(array)];
-    return newArray
+    let uniq = {};
+  return array.filter(obj => !uniq[obj.id] && (uniq[obj.id] = true))
+   
   },
 
   filterIngredients(object, filterValue) {

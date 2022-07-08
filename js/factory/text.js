@@ -1,7 +1,7 @@
-export class TextCard{
-    constructor(id, text){
-        
-        this.name = text;
-        this.id = id;
-    }
+export class TextCard {
+  constructor(id, text, recipe) {
+    this.name = text;
+    this.id = id;
+    this.recipe = recipe;
+  }
 }
