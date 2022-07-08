@@ -60,8 +60,9 @@ const makeIdArray = () => {
           recipesArray.push(el.recipe)
         }  
          console.log(recipesArray);
-        
-        return recipesArray     
+        arrayAll.push(recipesArray) 
+        console.log(arrayAll);
+        return arrayAll[0]      
 }
 
 // display par défaut des 50 recettes
@@ -94,10 +95,9 @@ export const filterTag = (datas, value) => {
   
 } 
  console.log(recipesArray);
- 
- 
- 
-return recipesArray    
+ arrayAll.push(recipesArray) 
+ console.log(arrayAll);//stoque les tableaux d'objets cliqués successifs
+return recipesArray // ici je voudrais pouvoir générer l'intersection pour avoir le nouvel affichage   
  
 
 }
