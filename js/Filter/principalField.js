@@ -9,18 +9,56 @@ import { globalFunctions } from '../utils/globalFunctions.js'
 console.log(recipeTextArray);
 console.log(variables.formControl);
 
-
+const listes = [variables.buttonIngredientsList, variables.buttonApplianceList, variables.buttonUstensilsList]
+console.log(variables.buttonIngredientsList, variables.buttonApplianceList, variables.buttonUstensilsList);
 ///
-export const submitTheSearch = (e) => {
-  e.preventDefault()
+export const submitOnClick = () => {
+  listes.forEach(elt => elt.addEventListener('click', (e) => {
+    e.preventDefault()
+    if(e.target.tagName === 'LI'){
+        const value = e.target.innerHTML.toLowerCase()
+        console.log(value);
+        const node = e.target.parentElement
+        //console.log(node);
+        const id = node.getAttribute('id')
+        console.log(id);
 
-  setSearchFocus()
-  if(e.target.value.length > 2){
-    updateRecipe(makeIdArray()) 
-  }
-  
-  
+        switch(id){
+            case 'ingredients':{
+                displayTagRecipe(ingredientsArray, value)
+                const tag = new Tags(value, 'ingredients')
+                tag.buildTag()
+                break
+            }
+            case 'appliances':{
+                displayTagRecipe(appareils, value)
+                const tag = new Tags(value, 'appliances')
+                tag.buildTag()
+                break
+            }
+            case 'ustensils':{
+                displayTagRecipe(ustensiles, value)
+                const tag = new Tags(value, 'ustensils')
+                tag.buildTag()
+                break
+            }
+            
+        }
+    }
+   
+}))
 }
+
+
+
+export const submitTheSearch = () => {
+  setSearchFocus()
+  updateRecipe(makeIdArray())
+    
+  }
+   
+  
+
 
 export const displayTagRecipe = (datas, value) => {
   
@@ -61,8 +99,8 @@ const makeIdArray = () => {
         }  
          console.log(recipesArray);
         arrayAll.push(recipesArray) 
-        console.log(arrayAll);
-        return arrayAll[0]      
+        console.log(arrayAll[arrayAll.length - 1]);
+        return arrayAll[arrayAll.length - 1]    
 }
 
 // display par défaut des 50 recettes
@@ -74,30 +112,31 @@ const displayDefault = () => {
 const updateRecipe = (fn) => {
   let recipe = fn
   console.log(recipe);
- let dupplicate = globalFunctions.duplicateRemove(recipe)
- console.log(dupplicate);
- globalFunctions.display(dupplicate)
+ 
+ globalFunctions.display(recipe)
 }
 
 
-console.log(ingredientsArray);
-//recherche de la valeur de la liste cliquée
-//Doit nous renvoyer un tableau de recette
+
 export const filterTag = (datas, value) => {
  
   
+  //arrayAll = [arrayAll[arrayAll.length - 1]]
+  
  let array = datas.filter(elt => elt.name.toLowerCase().includes(value));
  console.log(array);
- let recipesArray = []
  
+ let recipesArray = []
  for(let el of array){
-  recipesArray.push(el.recipe)
+ recipesArray.push(el.recipe)
   
 } 
- console.log(recipesArray);
- arrayAll.push(recipesArray) 
- console.log(arrayAll);//stoque les tableaux d'objets cliqués successifs
-return recipesArray // ici je voudrais pouvoir générer l'intersection pour avoir le nouvel affichage   
+ 
+ console.log(recipesArray);//stoque les tableaux d'objets cliqués successifs
+arrayAll.push(recipesArray)
+  let array1 = globalFunctions.intersect(arrayAll)
+  console.log(array1);
+ return array1 // ici je voudrais pouvoir générer l'intersection pour avoir le nouvel affichage   
  
 
 }

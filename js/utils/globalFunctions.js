@@ -16,23 +16,6 @@ export const globalFunctions = {
   },
 
  
-//     intersect(arrayOfArrays)
-// {        
-//     var arrayCopy = arrayOfArrays.slice(),
-//         baseArray = arrayCopy.pop();
-
-//     return baseArray.filter(function(item) {
-//         return arrayCopy.every(function(itemList) {
-//             return itemList.indexOf(item) !== -1;
-//         });
-//     });
-// },
-
-
-  intersect(array){
-   return array.reduce((a, b) => a.filter(c => b.includes(c)))
-    
-  },
 
   newIntersectionObj(intersectionArray, array1){
     
@@ -74,6 +57,23 @@ export const globalFunctions = {
     let uniq = {};
   return array.filter(obj => !uniq[obj.id] && (uniq[obj.id] = true))
    
+  },
+
+  intersect(tabs){
+    console.log(tabs)
+    if(tabs && tabs.length>0){    
+      const results=tabs.reduce((accumulateur, currentTab)=>{
+        //console.log("Accumulateur .. ",accumulateur)
+          return accumulateur.filter((e)=>{
+            return currentTab.some((r)=>r.id===e.id)
+          })
+      },tabs[0])
+      console.log(results)
+      return results
+      
+    }else{
+      return results === []
+    }
   },
 
   filterIngredients(object, filterValue) {

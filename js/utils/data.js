@@ -68,31 +68,16 @@ function makeIngredient(recipe) {
 }
 
 function makeUstensils(recipe) {
-  const { id, ustensils } = recipe;
+  const { ustensils, id } = recipe;
   for (let u of ustensils) {
-    const ustens = getUstensils(u);
-    if (ustens != null) {
-      ustens.id.push(id);
-    } else {
-      const ust = new Ustensils(u, [id], { ...recipe });
-      ustensiles.push(ust);
-    }
-  }
-  function getUstensils(string) {
-    return ustensiles.find((e) => e.name === string);
-  }
+    ustensiles.push(new Ustensils(u, id, {...recipe}))
+}
 }
 
 function makeAppareil(recipe) {
-  const { id, appliance } = recipe;
-  const app = getAppareil(appliance);
-  if (app != undefined) {
-    app.id.push(id);
-  } else {
-    const appl = new Appareil(appliance, [id], { ...recipe });
-    appareils.push(appl);
-  }
-  function getAppareil(string) {
-    return appareils.find((e) => e.name === string);
-  }
+  const { appliance, id } = recipe;
+    appareils.push(new Appareil(appliance, id, {...recipe}))
+    
 }
+ 
+
