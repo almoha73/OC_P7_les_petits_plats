@@ -3,7 +3,7 @@ import { Ingredients } from "../factory/Ingredients.js";
 import { Appareil } from "../factory/Appareil.js";
 import { Ustensils } from "../factory/Ustensils.js";
 //import { Recipe } from "../factory/Recipe.js";
-import { TextCard } from "../factory/text.js";
+import { TextCard } from "../factory/TextCard.js";
 //import { globalFunctions } from "./globalFunctions.js";
 import { variables } from "./variables.js";
 
@@ -16,7 +16,7 @@ export let recipeTextArray = [];
 
 export function loadData() {
   recettes.forEach((elt) => {
-    makeID(elt);
+    //makeID(elt);
     makeText(elt);
     makeIngredient(elt);
     makeUstensils(elt);
@@ -34,14 +34,15 @@ export function loadData() {
 
 console.log(ingredientsArray);
 
-function makeID(recipe) {
-  const { id } = recipe;
-  AllIds.push(id);
-}
+// function makeID(recipe) {
+//   const { id } = recipe;
+//   AllIds.push(id);
+// }
 
 function makeText(recipe) {
   const { ingredients, name, id, description } = recipe;
-  const i = ingredients.map((ing) => ing.ingredient.toLowerCase());
+ // const i = ingredients.map((ing) => ing.ingredient.toLowerCase());
+  const textIngredient=ingredients.reduce((accumulateur, current)=>{return accumulateur.concat(" ").concat(current.ingredient.toLowerCase())}, "")
 
   recipeTextArray.push(
     new TextCard(
@@ -49,7 +50,7 @@ function makeText(recipe) {
       name
         .toLowerCase()
         .concat(",")
-        .concat(i)
+        .concat(textIngredient)
         .concat(",")
         .concat(description.toLowerCase()),
       { ...recipe }
