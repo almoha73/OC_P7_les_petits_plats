@@ -116,13 +116,8 @@ export const unselectedTheSearch = () => {
     const resultats = globalFunctions.intersect(r);
     console.log(resultats);
     globalFunctions.display(resultats)
-    }else{
-      globalFunctions.display(variables.recettes)
     }
       
-  
-  }else{
-    globalFunctions.display(variables.recettes)
   }
   
    
