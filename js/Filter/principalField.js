@@ -63,30 +63,33 @@ export const submitOnClick = () => {
 
 export const inputTagSelected = () => {
   let val;
-  inputTags.forEach(input => {
-      input.addEventListener('input', (e) => {
-        e.preventDefault()
-        val = getSearchTerm(input)
-        console.log(val);
-        if(input === inputTags[0]){
-          
-          globalFunctions.buttonIngredientListPreview(variables.recettes, val) 
+ 
+        inputTags.forEach(input => {
+          input.addEventListener('input', (e) => {
+            e.preventDefault()
+            val = getSearchTerm(input)
+            console.log(val);
+            if(input === inputTags[0]){
+              
+              globalFunctions.buttonIngredientListPreview(variables.recettes, val) 
+                
+            }else if(input === inputTags[1]){
             
-        }else if(input === inputTags[1]){
-         
-          globalFunctions.buttonApplianceListPreview(variables.recettes, val)
-            
-        }else if(input === inputTags[2]){
+              globalFunctions.buttonApplianceListPreview(variables.recettes, val)
+                
+            }else if(input === inputTags[2]){
+              
+              globalFunctions.buttonUstensilsListPreview(variables.recettes, val)
+              
+          }
           
-          globalFunctions.buttonUstensilsListPreview(variables.recettes, val)
-           
-      }
-      
+          })
+          input.addEventListener('focusout', (e) => {
+            input.value = ""
+          })
       })
-      input.addEventListener('focusout', (e) => {
-        input.value = ""
-      })
-  })
+  
+  
   
 }
 
