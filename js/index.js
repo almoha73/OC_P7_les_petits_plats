@@ -11,35 +11,57 @@ import {
   arrayAll,
   filterRecipe,
   submitTheSearch,
-  setSearchFocus,
+  submit,
   submitOnClick,
+  resultsMain,
+  unselectedTag,
+  unselectedTheSearch,
 } from "./Filter/principalField.js";
 import { globalFunctions } from "./utils/globalFunctions.js";
 import { Tags } from "./Tags/tag.js";
+import { ParamFilter } from "./utils/ParamFilter.js";
 
 const initApp = () => {
   loadData();
   globalFunctions.display(variables.recettes);
-  setSearchFocus();
+  variables.formControl.focus();//focus champ principal
 
   variables.formControl.addEventListener("keyup", (e) => {
     e.preventDefault();
-    if (e.target.value.length > 2) {
-      submitTheSearch();
+    if (e.target.value.length > 2) { 
+        submitTheSearch();
+      
+    }else{
+      unselectedTheSearch()
     }
   });
 
   variables.formControl.addEventListener("focusout", (e) => {
     e.preventDefault();
-    const v = e.target.value.length;
-    if (e.target.value.length > 2) {
-      if (!arrayAll.some((obj) => obj.key === "principal")) {
-        //arrayAll.push(filterRecipe(e.target.value))
-        arrayAll.push({ key: "principal", data: filterRecipe(v) });
-      }
-    }
-  });
+    let find = false
+        if (e.target.value.length > 2) {
 
-  submitOnClick();
-};
+          arrayAll.forEach(tag => {
+            if(tag.equals(new ParamFilter('main'))){
+              tag.values = resultsMain
+              find = true
+            }
+          })
+          if(!find){
+            arrayAll.unshift(new ParamFilter('main', resultsMain))
+          }
+          console.log(arrayAll);
+          submit()
+    }
+    
+  });
+  
+  submitOnClick()
+
+  variables.containerTag.addEventListener('click', (e) => {
+    e.stopPropagation()
+    unselectedTag(e)
+  })
+
+}
 initApp();

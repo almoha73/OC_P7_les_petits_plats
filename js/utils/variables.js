@@ -1,8 +1,10 @@
 //import {} from "../index.js";
 import { recipes } from "../data/recipes.js";
-export let  variables = {
+export let variables = {
   recettes: recipes,
 
+  containerTag: document.querySelector(".filters-list"),
+  
   formControl: document.querySelector(".form-control-primary"),
 
   container: document.querySelector(".container.fluid-grid"),

@@ -9,9 +9,10 @@ import { Tags } from "../Tags/tag.js";
 import {} from "../index.js";
 import { variables } from "../utils/variables.js";
 import { globalFunctions } from "../utils/globalFunctions.js";
+import { ParamFilter } from "../utils/ParamFilter.js";
 
-console.log(recipeTextArray);
-console.log(variables.formControl);
+export let resultsMain = []
+export let arrayAll = [];
 
 const listes = [
   variables.buttonIngredientsList,
@@ -23,6 +24,8 @@ console.log(
   variables.buttonApplianceList,
   variables.buttonUstensilsList
 );
+
+
 ///
 export const submitOnClick = () => {
   listes.forEach((elt) =>
@@ -61,26 +64,76 @@ export const submitOnClick = () => {
   );
 };
 
+
+export const unselectedTag=(event)=>{
+  const target = event.target
+  console.log(target);
+  if(target.tagName === 'LI' || target.tagName === 'li'){
+    const val = target.innerHTML.toLowerCase()
+    target.remove()
+    const i = arrayAll.findIndex(item => item.equals(new ParamFilter(val)))
+    arrayAll.splice(i, 1)
+    if(arrayAll.length > 0){
+      updateRecipe(globalFunctions.intersect(arrayAll.map(elt => elt.values)))
+    }else{
+      updateRecipe(variables.recettes);
+    }
+}
+}
+
 export const submitTheSearch = () => {
-  setSearchFocus();
-  makeIdArray();
+  let value = getSearchTerm();
+  resultsMain=filterRecipe(value).map(elt => elt.recipe);
+  console.log(resultsMain);
+ console.log(arrayAll);
+ globalFunctions.display(resultsMain)
 };
+
+export const submit = () => {
+  let value = getSearchTerm();
+  resultsMain=filterRecipe(value).map(elt => elt.recipe);
+  console.log(resultsMain);
+ console.log(arrayAll);
+ const r = arrayAll.map(elt => elt.values)
+ console.log(r);
+ const resultats = globalFunctions.intersect(r);
+ console.log(resultats);
+ globalFunctions.display(resultats)
+
+}
+
+export const unselectedTheSearch = () => {
+  if(arrayAll.length > 0){
+    
+    const i = arrayAll.findIndex(item => item.equals(new ParamFilter('main', resultsMain)))
+    console.log(i);
+    if(i === 0){
+      console.log(arrayAll);
+    arrayAll.splice(0, 1)
+    console.log(arrayAll);
+    const r = arrayAll.map(elt => elt.values)
+    console.log(r);
+    const resultats = globalFunctions.intersect(r);
+    console.log(resultats);
+    globalFunctions.display(resultats)
+    }else{
+      globalFunctions.display(variables.recettes)
+    }
+      
+  
+  }else{
+    globalFunctions.display(variables.recettes)
+  }
+  
+   
+    
+}
 
 export const displayTagRecipe = (datas, value) => {
   updateRecipe(filterTag(datas, value));
 };
 
-// focus dans le champ principal
-export const setSearchFocus = () => {
-  variables.formControl.focus();
-};
 
-// recherche de la valeur tapée
-// const processTheSearch = () => {
-//   let searchTerm = getSearchTerm()
-
-//  return searchTerm
-// }
 
 const getSearchTerm = () => {
   const value = variables.formControl.value.trim().toLowerCase();
@@ -88,29 +141,17 @@ const getSearchTerm = () => {
   return value;
 };
 
-export let arrayAll = [];
+
 
 // construction d'un tableau en fonction de la valeur tapée dans le champ principal
 export const filterRecipe = (value) => {
-  let value = getSearchTerm();
+  
   if (value) {
     return recipeTextArray.filter((elt) => elt.name.includes(value));
   } else {
     return [];
   }
 
-  //const array = recipeTextArray.filter(elt => elt.name.includes(value))
-  // console.log(array);
-  // let recipesArray = []
-
-  //         for(let el of array){
-  //         recipesArray.push(el.recipe)
-  //       }
-  //        console.log(recipesArray);
-  //       arrayAll.push(recipesArray)
-  //       console.log(arrayAll[arrayAll.length - 1]);
-
-  //       return arrayAll[arrayAll.length - 1]
 };
 
 // display par défaut des 50 recettes
@@ -121,7 +162,7 @@ const displayDefault = () => {
 // update des recettes en fonction de la valeur tapée dans le champ
 const updateRecipe = (fn) => {
   let recipe = fn;
-  console.log(recipe);
+  //console.log(recipe);
 
   globalFunctions.display(recipe);
 };
@@ -129,17 +170,14 @@ const updateRecipe = (fn) => {
 export const filterTag = (datas, value) => {
   let array = datas.filter((elt) => elt.name.toLowerCase().includes(value));
   console.log(array);
-  arrayAll = [makeIdArray()];
-  let recipesArray = [];
-  for (let el of array) {
-    recipesArray.push(el.recipe);
-  }
-  console.log(arrayAll);
 
-  arrayAll.push(recipesArray);
-  console.log(arrayAll); //stoque les tableaux d'objets cliqués successifs
+  const recipeResult = array.map(item => item.recipe)
+  arrayAll.push(new ParamFilter(value, recipeResult))
+ console.log(arrayAll);
+  
+ const resultats = globalFunctions.intersect(arrayAll.map(item => item.values));
+console.log(resultats);
+ return resultats
 
-  let array1 = globalFunctions.intersect(arrayAll);
-  console.log(array1);
-  return array1; // ici je voudrais pouvoir générer l'intersection pour avoir le nouvel affichage
+  
 };

@@ -72,7 +72,7 @@ export const globalFunctions = {
       return results
       
     }else{
-      return results === []
+      return variables.recettes
     }
   },
 
@@ -94,16 +94,5 @@ export const globalFunctions = {
         globalFunctions.buttonListPreview(array);
   },
 
-  
-
-  // recipeConcat(array, filterValue){
-  //   const array1 = array.filter(
-  //       (recipe) =>
-  //         recipe.name.toLowerCase().includes(filterValue) ||
-  //         recipe.description.toLowerCase().includes(filterValue) ||
-  //         globalFunctions.filterIngredients(recipe, filterValue)
-  //     )
-  //     return array1
-  // }
   
 };
