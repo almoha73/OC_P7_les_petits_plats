@@ -19,11 +19,8 @@ const listes = [
   variables.buttonApplianceList,
   variables.buttonUstensilsList,
 ];
-console.log(
-  variables.buttonIngredientsList,
-  variables.buttonApplianceList,
-  variables.buttonUstensilsList
-);
+const inputTags = Array.from(variables.inputTag);
+console.log(inputTags);
 
 
 ///
@@ -64,6 +61,34 @@ export const submitOnClick = () => {
   );
 };
 
+export const inputTagSelected = () => {
+  let val;
+  inputTags.forEach(input => {
+      input.addEventListener('input', (e) => {
+        e.preventDefault()
+        val = getSearchTerm(input)
+        console.log(val);
+        if(input === inputTags[0]){
+          
+          globalFunctions.buttonIngredientListPreview(variables.recettes, val) 
+            
+        }else if(input === inputTags[1]){
+         
+          globalFunctions.buttonApplianceListPreview(variables.recettes, val)
+            
+        }else if(input === inputTags[2]){
+          
+          globalFunctions.buttonUstensilsListPreview(variables.recettes, val)
+           
+      }
+      
+      })
+      input.addEventListener('focusout', (e) => {
+        input.value = ""
+      })
+  })
+  
+}
 
 export const unselectedTag=(event)=>{
   const target = event.target
@@ -82,7 +107,7 @@ export const unselectedTag=(event)=>{
 }
 
 export const submitTheSearch = () => {
-  let value = getSearchTerm();
+  let value = getSearchTerm(variables.formControl);
   resultsMain=filterRecipe(value).map(elt => elt.recipe);
   console.log(resultsMain);
  console.log(arrayAll);
@@ -90,7 +115,7 @@ export const submitTheSearch = () => {
 };
 
 export const submit = () => {
-  let value = getSearchTerm();
+  let value = getSearchTerm(variables.formControl);
   resultsMain=filterRecipe(value).map(elt => elt.recipe);
   console.log(resultsMain);
  console.log(arrayAll);
@@ -130,8 +155,8 @@ export const displayTagRecipe = (datas, value) => {
 
 
 
-const getSearchTerm = () => {
-  const value = variables.formControl.value.trim().toLowerCase();
+const getSearchTerm = (input) => {
+  const value = input.value.trim().toLowerCase();
   console.log(value);
   return value;
 };

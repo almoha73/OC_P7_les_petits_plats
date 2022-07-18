@@ -61,9 +61,11 @@ export class ButtonMenuFactory {
   buttonIngredientsByValue(array, filterValue){
     this.workArrayForButton(array)
     const listIngredients = Array.from(this.ingredients).sort().filter(elt => elt.toLowerCase().includes(filterValue));
-    //console.log(listIngredients);
+    console.log(listIngredients);
+    variables.buttonIngredientsList.innerHTML = ''
     listIngredients.forEach((e) => {
-      const elt = `<li class="dropdown-menu__item" data-filter="ingredients">${e}</li>`;
+      const elt = `<li class="dropdown-menu__item dropdown-menu__item-ingredients" data-filter="ingredients">${e}</li>`;
+      
       variables.buttonIngredientsList.innerHTML += elt;
     });
   }
@@ -71,8 +73,9 @@ export class ButtonMenuFactory {
     this.workArrayForButton(array)
     const listAppliance = Array.from(this.appliance).sort().filter(elt => elt.toLowerCase().includes(filterValue));
     //console.log(listAppliance);
+    variables.buttonApplianceList.innerHTML = ''
     listAppliance.forEach((e) => {
-    const elt2 = `<li class="dropdown-menu__item" data-filter="appliances">${e}</li>`;
+    const elt2 = `<li class="dropdown-menu__item dropdown-menu__item-appliances" data-filter="appliances">${e}</li>`;
     variables.buttonApplianceList.innerHTML += elt2;
     });
   }
@@ -81,8 +84,9 @@ export class ButtonMenuFactory {
     this.workArrayForButton(array)
     const listUstensils = Array.from(this.ustensils).sort().filter(elt => elt.toLowerCase().includes(filterValue));
     //console.log(listUstensils);
+    variables.buttonUstensilsList.innerHTML = ''
     listUstensils.forEach((e) => {
-    const elt3 = `<li class="dropdown-menu__item" data-filter="ustensils">${e}</li>`;
+    const elt3 = `<li class="dropdown-menu__item dropdown-menu__item-ustensils" data-filter="ustensils">${e}</li>`;
     variables.buttonUstensilsList.innerHTML += elt3;
     });
   }  

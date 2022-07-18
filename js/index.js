@@ -16,6 +16,7 @@ import {
   resultsMain,
   unselectedTag,
   unselectedTheSearch,
+  inputTagSelected,
 } from "./Filter/principalField.js";
 import { globalFunctions } from "./utils/globalFunctions.js";
 import { Tags } from "./Tags/tag.js";
@@ -57,6 +58,8 @@ const initApp = () => {
   });
   
   submitOnClick()
+
+  inputTagSelected()
 
   variables.containerTag.addEventListener('click', (e) => {
     e.stopPropagation()

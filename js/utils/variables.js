@@ -21,6 +21,8 @@ export let variables = {
 
   inputUstensil: document.querySelector(".form-control-ustensil"),
 
+  inputTag: document.querySelectorAll(".form-control-secondary"),
+
   cards: document.querySelectorAll(".card"),
 
   liste: Array.from(
