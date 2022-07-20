@@ -124,6 +124,7 @@ export const submitTheSearch = () => {
   globalFunctions.display(resultsMain)
  }else{
   error.style.display = 'block'
+  globalFunctions.display(resultsMain)
  }
  
 };
@@ -143,6 +144,7 @@ export const submit = () => {
   globalFunctions.display(resultats)
  }else{
   error.style.display = 'block'
+  globalFunctions.display(resultats)
  }
  
 
