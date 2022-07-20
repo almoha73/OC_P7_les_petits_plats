@@ -29,7 +29,7 @@ export const recipes = [
     ],
     time: 10,
     description:
-      "Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. mixeur jusqu'à avoir la consistence désirée",
+      "Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. mixeur jusqu'à avoir la consistence désirée.",
     appliance: "Blender",
     ustensils: ["Cuillère à Soupe", "Verres", "Presse citron"],
   },
@@ -174,7 +174,7 @@ export const recipes = [
         unit: "cuillères à soupe",
       },
       {
-        ingredient: "gruyère râpé",
+        ingredient: "Gruyère râpé",
         quantity: 100,
         unit: "g",
       },

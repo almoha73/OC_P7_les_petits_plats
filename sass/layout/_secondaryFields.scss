@@ -59,11 +59,33 @@
     background-color: abstracts.$color-ustensil;
   }
   
+  .dropdown-menu__ingredients{
+    max-height: 300px;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      width: 12px; /* width of the entire scrollbar */
+      height: 12px;
+    }
+    &::-webkit-scrollbar-track {
+      background: abstracts.$color-white; /* color of the tracking area */
+      border: 1px solid abstracts.$color-ingredient;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: abstracts.$color-ingredient; /* color of the scroll thumb */
+      border-radius: 20px; /* roundness of the scroll thumb */
+      border: 3px solid blue /* creates padding around scroll thumb */
+    }
+    
+  }
+  
+  
+
   .dropdown-menu__ingredients, .dropdown-menu__appliances, .dropdown-menu__ustensils {
     position: absolute;
     top: calc(100% - 5px);
     display: grid;
     width: 100%;
+    
     padding: 0 0.9375rem 0.9375rem;
     margin: 0;
     border-bottom-left-radius: 5px;
@@ -75,6 +97,7 @@
     transform: scaleY(0);
     transform-origin: top left;
     transition: transform 150ms ease-in-out;
+    
   }
   
   .dropdown-menu__item {
