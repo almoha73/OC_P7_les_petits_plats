@@ -4,8 +4,10 @@
 .card{
     min-width: 380px;
     max-width: 450px;
-    max-height: 364px;
+    min-height: 364px;
+    max-height: 400px;
     margin-bottom: 20px;
+    
     border-radius: 6px;
     display: flex;
     flex-direction: column;
@@ -61,6 +63,7 @@
       .card-body-second{
           display: flex;
           gap: 20px;
+          
           .card-text-first{
               width: 50%;
               p{

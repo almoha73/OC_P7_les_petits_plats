@@ -168,7 +168,8 @@
 .card {
   min-width: 380px;
   max-width: 450px;
-  max-height: 364px;
+  min-height: 364px;
+  max-height: 400px;
   margin-bottom: 20px;
   border-radius: 6px;
   display: flex;
