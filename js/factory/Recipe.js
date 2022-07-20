@@ -21,7 +21,7 @@ export class Recipe {
         <div id="${this.id}" data-appliance="${
       this.appliance
     }" data-ustensiles="${this.ustensiles}" class="card">
-        <img src="https://source.unsplash.com/random/380x178" class="card-img-top" alt="...">
+    <div class="card-img-top"></div>
       
         <div class="cardBody-first">
             <div class="card-body-first">
