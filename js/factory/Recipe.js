@@ -7,6 +7,7 @@ export class Recipe {
     this.appliance = data.appliance;
     this.ustensiles = data.ustensils;
     this.name = data.name;
+    this.image = data.image;
     this.time = data.time;
     this.description = data.description;
     this.ingredients = data.ingredients;
@@ -21,8 +22,8 @@ export class Recipe {
         <div id="${this.id}" data-appliance="${
       this.appliance
     }" data-ustensiles="${this.ustensiles}" class="card">
-    <div class="card-img-top"></div>
-      
+    <!--<div class="card-img-top"></div>-->
+    <img class="card-img-top" src="images/photos/${this.image}">  
         <div class="cardBody-first">
             <div class="card-body-first">
                 <h5 class="card-title" title="${this.name}">${this.name}</h5>
