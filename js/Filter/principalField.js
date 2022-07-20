@@ -88,6 +88,8 @@ export const inputTagSelected = () => {
           input.addEventListener('focusout', (e) => {
             input.value = ""
           })
+
+          
       })
   
   
@@ -104,6 +106,7 @@ export const unselectedTag=(event)=>{
     arrayAll.splice(i, 1)
     if(arrayAll.length > 0){
       updateRecipe(globalFunctions.intersect(arrayAll.map(elt => elt.values)))
+      error.style.display = 'none'
     }else{
       updateRecipe(variables.recettes);
       
@@ -173,7 +176,17 @@ export const unselectedTheSearch = () => {
 }
 
 export const displayTagRecipe = (datas, value) => {
-  updateRecipe(filterTag(datas, value));
+  const result = filterTag(datas, value)
+  if(result.length > 0){
+    updateRecipe(result);
+    error.style.display = 'none'
+  }else{
+    updateRecipe(result);
+      error.style.display = 'block'
+     
+  }
+  
+
 };
 
 
@@ -203,6 +216,8 @@ const updateRecipe = (fn) => {
   //console.log(recipe);
 
   globalFunctions.display(recipe);
+
+  
 };
 
 export const filterTag = (datas, value) => {
@@ -212,9 +227,12 @@ export const filterTag = (datas, value) => {
   const recipeResult = array.map(item => item.recipe)
   arrayAll.push(new ParamFilter(value, recipeResult))
  console.log(arrayAll);
-  
+ 
  const resultats = globalFunctions.intersect(arrayAll.map(item => item.values));
 console.log(resultats);
+
+
+
  return resultats
 
   

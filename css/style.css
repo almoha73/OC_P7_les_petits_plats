@@ -170,12 +170,16 @@
   max-width: 450px;
   min-height: 364px;
   max-height: 400px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
+  box-shadow: 2px 0px 7px 0px #C7BEBE;
   border-radius: 6px;
   display: flex;
   flex-direction: column;
   justify-content: start;
   cursor: pointer;
+}
+.card:hover {
+  transform: scale(1.02);
 }
 .card .card-img-top {
   width: 100%;
@@ -233,6 +237,7 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  font-weight: 400;
 }
 .card .cardBody-second .card-body-second .card-text-second {
   width: 50%;
@@ -243,6 +248,7 @@
   -webkit-line-clamp: 7;
   overflow: hidden;
   text-align: justify;
+  font-weight: 400;
 }
 
 /* FILTERS LIST */
