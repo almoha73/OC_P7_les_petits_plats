@@ -31,14 +31,15 @@ const initApp = () => {
     e.preventDefault();
     if (e.target.value.length > 2) { 
         submitTheSearch();
-        variables.containerTag.focus()
+        
     }else{
       unselectedTheSearch()
     }
   });
 
-  variables.formControl.addEventListener("mouseleave", (e) => {
+  variables.formControl.addEventListener("mouseout", (e) => {
     e.preventDefault();
+    
     let find = false
         if (e.target.value.length > 2) {
 
@@ -52,6 +53,7 @@ const initApp = () => {
             arrayAll.unshift(new ParamFilter('main', resultsMain))
           }
           console.log(arrayAll);
+          
           submit()
           
     }

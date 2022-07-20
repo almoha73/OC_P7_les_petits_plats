@@ -21,7 +21,8 @@ const listes = [
 ];
 const inputTags = Array.from(variables.inputTag);
 console.log(inputTags);
-
+const error = document.querySelector('.erreur')
+  console.log(error);
 
 ///
 export const submitOnClick = () => {
@@ -105,6 +106,7 @@ export const unselectedTag=(event)=>{
       updateRecipe(globalFunctions.intersect(arrayAll.map(elt => elt.values)))
     }else{
       updateRecipe(variables.recettes);
+      
     }
 }
 }
@@ -114,7 +116,13 @@ export const submitTheSearch = () => {
   resultsMain=filterRecipe(value).map(elt => elt.recipe);
   console.log(resultsMain);
  console.log(arrayAll);
- globalFunctions.display(resultsMain)
+ if(resultsMain){
+  error.style.display = 'none'
+  globalFunctions.display(resultsMain)
+ }else{
+  error.style.display = 'block'
+ }
+ 
 };
 
 export const submit = () => {
@@ -126,9 +134,18 @@ export const submit = () => {
  console.log(r);
  const resultats = globalFunctions.intersect(r);
  console.log(resultats);
- globalFunctions.display(resultats)
+
+ if(resultats.length > 0){
+  error.style.display = 'none'
+  globalFunctions.display(resultats)
+ }else{
+  error.style.display = 'block'
+ }
+ 
 
 }
+
+
 
 export const unselectedTheSearch = () => {
   if(arrayAll.length > 0){
@@ -146,6 +163,9 @@ export const unselectedTheSearch = () => {
     globalFunctions.display(resultats)
     }
       
+  }else{
+    globalFunctions.display(variables.recettes)
+    error.style.display = 'none'
   }
   
    
@@ -167,20 +187,15 @@ const getSearchTerm = (input) => {
 
 
 // construction d'un tableau en fonction de la valeur tapée dans le champ principal
-export const filterRecipe = (value) => {
-  
+export const filterRecipe = (value) => { 
   if (value) {
+    console.log(recipeTextArray.filter((elt) => elt.name.includes(value)));
     return recipeTextArray.filter((elt) => elt.name.includes(value));
-  } else {
-    return [];
+  }else{
+    return []
   }
+}
 
-};
-
-// display par défaut des 50 recettes
-const displayDefault = () => {
-  globalFunctions.display(variables.recettes);
-};
 
 // update des recettes en fonction de la valeur tapée dans le champ
 const updateRecipe = (fn) => {
