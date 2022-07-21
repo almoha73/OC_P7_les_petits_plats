@@ -1,8 +1,6 @@
 import { Recipe } from "../factory/Recipe.js";
 import { ButtonMenuFactory } from "../factory/ButtonFactory.js";
 import { variables } from "./variables.js";
-//import { recipes } from "../data/recipes.js";
-//import { recettes } from '../index.js'
 
 
 export const globalFunctions = {

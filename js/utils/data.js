@@ -26,13 +26,16 @@ export function loadData() {
     ingredientsArray,
     appareils,
     ustensiles,
-    AllIds,
     recipeTextArray,
     recettes,
   };
 }
 
-console.log(ingredientsArray);
+console.log(ingredientsArray,
+  appareils,
+  ustensiles,
+  recipeTextArray,
+  recettes,);
 
 // function makeID(recipe) {
 //   const { id } = recipe;
@@ -41,9 +44,12 @@ console.log(ingredientsArray);
 
 function makeText(recipe) {
   const { ingredients, name, id, description } = recipe;
- // const i = ingredients.map((ing) => ing.ingredient.toLowerCase());
-  const textIngredient=ingredients.reduce((accumulateur, current)=>{return accumulateur.concat(" ").concat(current.ingredient.toLowerCase())}, "")
-
+  console.log(ingredients, recipe);
+  // const i = ingredients.map((ing) => ing.ingredient.toLowerCase());
+  const textIngredient = ingredients.reduce((accumulateur, current) => {
+    return accumulateur.concat(" ").concat(current.ingredient.toLowerCase());
+  }, "");
+ console.log(textIngredient);
   recipeTextArray.push(
     new TextCard(
       id,
@@ -51,7 +57,7 @@ function makeText(recipe) {
         .toLowerCase()
         .concat(",")
         .concat(textIngredient)
-        .concat(",")
+        .concat(", ")
         .concat(description.toLowerCase()),
       { ...recipe }
     )
@@ -59,26 +65,21 @@ function makeText(recipe) {
 }
 
 function makeIngredient(recipe) {
-   const { ingredients, id } = recipe;
-   for (let i of ingredients) {
+  const { ingredients, id } = recipe;
+  for (let i of ingredients) {
     //console.log(i.ingredient);
-    ingredientsArray.push(new Ingredients(i.ingredient, id, {...recipe}));
-   }
-   
-  
+    ingredientsArray.push(new Ingredients(i.ingredient, id, { ...recipe }));
+  }
 }
 
 function makeUstensils(recipe) {
   const { ustensils, id } = recipe;
   for (let u of ustensils) {
-    ustensiles.push(new Ustensils(u, id, {...recipe}))
-}
+    ustensiles.push(new Ustensils(u, id, { ...recipe }));
+  }
 }
 
 function makeAppareil(recipe) {
   const { appliance, id } = recipe;
-    appareils.push(new Appareil(appliance, id, {...recipe}))
-    
+  appareils.push(new Appareil(appliance, id, { ...recipe }));
 }
- 
-

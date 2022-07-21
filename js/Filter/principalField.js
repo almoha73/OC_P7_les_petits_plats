@@ -3,7 +3,6 @@ import {
   ingredientsArray,
   appareils,
   ustensiles,
-  AllIds,
 } from "../utils/data.js";
 import { Tags } from "../Tags/tag.js";
 import {} from "../index.js";
@@ -119,6 +118,29 @@ export const submitTheSearch = () => {
   resultsMain=filterRecipe(value).map(elt => elt.recipe);
   console.log(resultsMain);
  console.log(arrayAll);
+
+if(arrayAll.length > 0){
+  if(arrayAll.some(elt => {
+    if(!elt.equals(new ParamFilter('main'))){
+      return true
+    }
+  }
+    )){
+      arrayAll.forEach(tag => {
+        if(tag.equals(new ParamFilter('main'))){
+          tag.values = resultsMain
+          find = true
+        }
+      })
+      if(!find){
+        arrayAll.unshift(new ParamFilter('main', resultsMain))
+      }
+      const result = globalFunctions.intersect(arrayAll.map(elt => elt.values))
+      globalFunctions.display(result)
+      return
+    }
+}
+
  if(resultsMain){
   error.style.display = 'none'
   globalFunctions.display(resultsMain)

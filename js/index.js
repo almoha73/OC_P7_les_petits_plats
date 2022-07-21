@@ -37,28 +37,28 @@ const initApp = () => {
     }
   });
 
-  variables.formControl.addEventListener("mouseout", (e) => {
-    e.preventDefault();
+  // variables.formControl.addEventListener("focusout", (e) => {
+  //   e.preventDefault();
     
-    let find = false
-        if (e.target.value.length > 2) {
+  //   let find = false
+  //       if (e.target.value.length > 2) {
 
-          arrayAll.forEach(tag => {
-            if(tag.equals(new ParamFilter('main'))){
-              tag.values = resultsMain
-              find = true
-            }
-          })
-          if(!find){
-            arrayAll.unshift(new ParamFilter('main', resultsMain))
-          }
-          console.log(arrayAll);
+  //         arrayAll.forEach(tag => {
+  //           if(tag.equals(new ParamFilter('main'))){
+  //             tag.values = resultsMain
+  //             find = true
+  //           }
+  //         })
+  //         if(!find){
+  //           arrayAll.unshift(new ParamFilter('main', resultsMain))
+  //         }
+  //         console.log(arrayAll);
           
-          submit()
+  //         submit()
           
-    }
+  //   }
     
-  });
+  // });
   
   submitOnClick()
 
@@ -71,3 +71,5 @@ const initApp = () => {
 
 }
 initApp();
+
+
