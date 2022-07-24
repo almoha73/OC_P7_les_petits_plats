@@ -19,10 +19,11 @@ const listes = [
   variables.buttonUstensilsList,
 ];
 const inputTags = Array.from(variables.inputTag);
-console.log(inputTags);
+//console.log(inputTags);
 const error = document.querySelector('.erreur')
   console.log(error);
-
+const recipesList = document.querySelector('#recipes-list')
+console.log(recipesList);
 ///
 export const submitOnClick = () => {
   listes.forEach((elt) =>
@@ -63,8 +64,9 @@ export const submitOnClick = () => {
 
 export const inputTagSelected = () => {
   let val;
- 
+  
         inputTags.forEach(input => {
+          
           input.addEventListener('input', (e) => {
             e.preventDefault()
             val = getSearchTerm(input)
@@ -72,7 +74,7 @@ export const inputTagSelected = () => {
             if(input === inputTags[0]){
               
               globalFunctions.buttonIngredientListPreview(variables.recettes, val) 
-                
+               
             }else if(input === inputTags[1]){
             
               globalFunctions.buttonApplianceListPreview(variables.recettes, val)
@@ -85,6 +87,7 @@ export const inputTagSelected = () => {
           
           })
           input.addEventListener('focusout', (e) => {
+            e.preventDefault()
             input.value = ""
           })
 
@@ -105,10 +108,10 @@ export const unselectedTag=(event)=>{
     arrayAll.splice(i, 1)
     if(arrayAll.length > 0){
       updateRecipe(globalFunctions.intersect(arrayAll.map(elt => elt.values)))
-      error.style.display = 'none'
+      
     }else{
       updateRecipe(variables.recettes);
-      
+      error.style.display = 'none'
     }
 }
 }
@@ -118,7 +121,7 @@ export const submitTheSearch = () => {
   resultsMain=filterRecipe(value).map(elt => elt.recipe);
   console.log(resultsMain);
  console.log(arrayAll);
-
+ let find = false
 if(arrayAll.length > 0){
   if(arrayAll.some(elt => {
     if(!elt.equals(new ParamFilter('main'))){
@@ -133,44 +136,29 @@ if(arrayAll.length > 0){
         }
       })
       if(!find){
-        arrayAll.unshift(new ParamFilter('main', resultsMain))
+        
+          arrayAll.unshift(new ParamFilter('main', resultsMain))
+        
+        
       }
       const result = globalFunctions.intersect(arrayAll.map(elt => elt.values))
-      globalFunctions.display(result)
+      console.log(result);
+
+      
+        updateRecipe(result)
+       
+      
+     
       return
     }
+    console.log(arrayAll);  
 }
 
- if(resultsMain){
-  error.style.display = 'none'
-  globalFunctions.display(resultsMain)
- }else{
-  error.style.display = 'block'
-  globalFunctions.display(resultsMain)
- }
- 
+updateRecipe(resultsMain)
+
+
 };
 
-export const submit = () => {
-  let value = getSearchTerm(variables.formControl);
-  resultsMain=filterRecipe(value).map(elt => elt.recipe);
-  console.log(resultsMain);
- console.log(arrayAll);
- const r = arrayAll.map(elt => elt.values)
- console.log(r);
- const resultats = globalFunctions.intersect(r);
- console.log(resultats);
-
- if(resultats.length > 0){
-  error.style.display = 'none'
-  globalFunctions.display(resultats)
- }else{
-  error.style.display = 'block'
-  globalFunctions.display(resultats)
- }
- 
-
-}
 
 
 
@@ -187,11 +175,12 @@ export const unselectedTheSearch = () => {
     console.log(r);
     const resultats = globalFunctions.intersect(r);
     console.log(resultats);
-    globalFunctions.display(resultats)
+    updateRecipe(resultats)
+    error.style.display = 'none'
     }
       
   }else{
-    globalFunctions.display(variables.recettes)
+    updateRecipe(variables.recettes)
     error.style.display = 'none'
   }
   
@@ -199,19 +188,7 @@ export const unselectedTheSearch = () => {
     
 }
 
-export const displayTagRecipe = (datas, value) => {
-  const result = filterTag(datas, value)
-  if(result.length > 0){
-    updateRecipe(result);
-    error.style.display = 'none'
-  }else{
-    updateRecipe(result);
-      error.style.display = 'block'
-     
-  }
-  
 
-};
 
 
 
@@ -237,17 +214,19 @@ export const filterRecipe = (value) => {
 // update des recettes en fonction de la valeur tapée dans le champ
 const updateRecipe = (fn) => {
   let recipe = fn;
-  //console.log(recipe);
-
+  console.log(recipe);
+  
   globalFunctions.display(recipe);
 
-  
+  if(recipe.length === 0){
+    error.style.display = 'block'
+  }
 };
 
 export const filterTag = (datas, value) => {
   let array = datas.filter((elt) => elt.name.toLowerCase().includes(value));
   console.log(array);
-
+  
   const recipeResult = array.map(item => item.recipe)
   arrayAll.push(new ParamFilter(value, recipeResult))
  console.log(arrayAll);
@@ -257,7 +236,27 @@ console.log(resultats);
 
 
 
+console.log(resultats);
  return resultats
 
   
 };
+
+
+export const displayTagRecipe = (datas, value) => {
+  const result = filterTag(datas, value)
+  if(result.length > 0){
+    updateRecipe(result);
+    //error.style.display = 'none'
+  }else{
+    updateRecipe(result);
+      //error.style.display = 'block'
+     
+  }
+  
+
+};
+
+
+
+

@@ -44,12 +44,12 @@ console.log(ingredientsArray,
 
 function makeText(recipe) {
   const { ingredients, name, id, description } = recipe;
-  console.log(ingredients, recipe);
+  //console.log(ingredients, recipe);
   // const i = ingredients.map((ing) => ing.ingredient.toLowerCase());
   const textIngredient = ingredients.reduce((accumulateur, current) => {
     return accumulateur.concat(" ").concat(current.ingredient.toLowerCase());
   }, "");
- console.log(textIngredient);
+ //console.log(textIngredient);
   recipeTextArray.push(
     new TextCard(
       id,

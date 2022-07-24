@@ -11,12 +11,13 @@ import {
   arrayAll,
   filterRecipe,
   submitTheSearch,
-  submit,
+  //submit,
   submitOnClick,
   resultsMain,
   unselectedTag,
   unselectedTheSearch,
   inputTagSelected,
+  
 } from "./Filter/principalField.js";
 import { globalFunctions } from "./utils/globalFunctions.js";
 import { Tags } from "./Tags/tag.js";
@@ -35,34 +36,39 @@ const initApp = () => {
     }else{
       unselectedTheSearch()
     }
+    
   });
 
-  // variables.formControl.addEventListener("focusout", (e) => {
-  //   e.preventDefault();
-    
-  //   let find = false
-  //       if (e.target.value.length > 2) {
 
-  //         arrayAll.forEach(tag => {
-  //           if(tag.equals(new ParamFilter('main'))){
-  //             tag.values = resultsMain
-  //             find = true
-  //           }
-  //         })
-  //         if(!find){
-  //           arrayAll.unshift(new ParamFilter('main', resultsMain))
-  //         }
-  //         console.log(arrayAll);
-          
-  //         submit()
-          
-  //   }
+  variables.formControl.addEventListener("focusout", (e) => {
+    e.preventDefault();
     
-  // });
+    let find = false
+        if (e.target.value.length > 2) {
+
+          arrayAll.forEach(tag => {
+            if(tag.equals(new ParamFilter('main'))){
+              tag.values = resultsMain
+              find = true
+            }
+          })
+          
+
+          
+          if(!find){
+            arrayAll.unshift(new ParamFilter('main', resultsMain))
+          }
+          console.log(arrayAll);
+          console.log(resultsMain);
+    }
+    
+  });
   
   submitOnClick()
 
   inputTagSelected()
+
+  
 
   variables.containerTag.addEventListener('click', (e) => {
     e.stopPropagation()

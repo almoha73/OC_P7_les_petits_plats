@@ -11,13 +11,6 @@ export class ButtonMenuFactory {
     
   }
 
-  buildArrayButton(){
-    const listIngredients = Array.from(this.ingredients).sort();
-    const listAppliance = Array.from(this.appliance).sort();
-    const listUstensils = Array.from(this.ustensils).sort();
-
-    return [listIngredients, listAppliance, listUstensils]
-  }
 
   buildButton() {
     
@@ -26,14 +19,20 @@ export class ButtonMenuFactory {
     //console.log(listIngredients);
     listIngredients.forEach((e) => {
       const elt = `<li class="dropdown-menu__item dropdown-menu__item-ingredients" data-filter="ingredients">${e}</li>`;
+      // listIngredients.push(e)
+      // console.log(listIngredients);
       variables.buttonIngredientsList.innerHTML += elt;
+      return listIngredients
     });
     
     const listAppliance = Array.from(this.appliance).sort();
     //console.log(listAppliance);
     listAppliance.forEach((e) => {
       const elt = `<li class="dropdown-menu__item dropdown-menu__item-appliances" data-filter="appliances">${e}</li>`;
+      // listAppliance.push(e)
+      // console.log(listAppliance);
     variables.buttonApplianceList.innerHTML += elt;
+    return listAppliance
     });
 
     //console.log(this.ustensilsArray);
@@ -41,7 +40,10 @@ export class ButtonMenuFactory {
     //console.log(listUstensils);
     listUstensils.forEach((e) => {
       const elt = `<li class="dropdown-menu__item dropdown-menu__item-ustensils" data-filter="ustensils">${e}</li>`;
+      // listUstensils.push(e)
+      // console.log(listUstensils);
     variables.buttonUstensilsList.innerHTML += elt;
+    return listUstensils
     });
   }
 
@@ -61,7 +63,7 @@ export class ButtonMenuFactory {
   buttonIngredientsByValue(array, filterValue){
     this.workArrayForButton(array)
     const listIngredients = Array.from(this.ingredients).sort().filter(elt => elt.toLowerCase().includes(filterValue));
-    console.log(listIngredients);
+    //console.log(listIngredients);
     variables.buttonIngredientsList.innerHTML = ''
     listIngredients.forEach((e) => {
       const elt = `<li class="dropdown-menu__item dropdown-menu__item-ingredients" data-filter="ingredients">${e}</li>`;

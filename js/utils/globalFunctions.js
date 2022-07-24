@@ -28,7 +28,7 @@ export const globalFunctions = {
   buttonListPreview(array) {
     const buttonMenuFactory = new ButtonMenuFactory();
     buttonMenuFactory.workArrayForButton(array);
-    buttonMenuFactory.buildButton()
+     buttonMenuFactory.buildButton()
     
   },
 
