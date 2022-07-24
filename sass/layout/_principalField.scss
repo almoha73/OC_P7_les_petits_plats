@@ -26,9 +26,14 @@
     background-size: 33px 33px;
     color: abstracts.$color-black;
     font-weight: 400;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    
     &::placeholder {
       color: inherit;
       opacity: 25%;
+    }
+    &:focus{
+      outline: none;
+      box-shadow: 0px 0px 10px 1px abstracts.$color-ingredient;
     }
   }
