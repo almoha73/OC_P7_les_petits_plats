@@ -106,15 +106,15 @@ export const unselectedTag = (event) => {
 
 export const submitTheSearch = () => {
   let value = getSearchTerm(variables.formControl);
-  let newArrayText = filterRecipe(value);
-  console.log(newArrayText);
-  for (let elt of newArrayText) {
-    resultsMain.push(elt.recipe);
-    console.log(resultsMain);
-    return resultsMain;
-  }
-
-  console.log(arrayAll);
+  resultsMain.splice(0, resultsMain.length)
+  filterRecipe(value);
+  console.log(resultsMain);
+  // let newArrayText = filterRecipe(value);
+  // console.log(newArrayText);
+  // for (let elt of newArrayText) {
+  //   resultsMain.push(elt.recipe);
+  //   return resultsMain;
+  // }
   let find = false;
   if (arrayAll.length > 0) {
     if (
@@ -133,19 +133,15 @@ export const submitTheSearch = () => {
       if (!find) {
         arrayAll.unshift(new ParamFilter("main", resultsMain));
       }
-
       const arrayAllfilter = [];
       for (let elt of arrayAll) {
         arrayAllfilter.push(elt.values);
-        console.log(arrayAllfilter);
         return arrayAllfilter;
       }
       const result = globalFunctions.intersect(arrayAllfilter);
-
       updateRecipe(result);
       return;
     }
-    console.log(arrayAll);
   }
   updateRecipe(resultsMain);
 };
@@ -155,7 +151,6 @@ export const unselectedTheSearch = () => {
     const i = arrayAll.findIndex((item) =>
       item.equals(new ParamFilter("main", resultsMain))
     );
-    console.log(i);
     if (i === 0) {
       console.log(arrayAll);
       arrayAll.splice(0, 1);
@@ -181,16 +176,32 @@ const getSearchTerm = (input) => {
 
 // construction d'un tableau en fonction de la valeur tapée dans le champ principal
 export const filterRecipe = (value) => {
-  function filterA(elt) {
-    if (elt.name.includes(value)) {
-      return true;
-    } else {
-      return false;
+  let i = 0;
+  while (i < recipeTextArray.length) {
+    if (recipeTextArray[i].name.includes(value)) {
+      resultsMain.push(recipeTextArray[i].recipe);
     }
+    i++;
   }
-  console.log(recipeTextArray.filter(filterA));
-  return recipeTextArray.filter(filterA);
+  return resultsMain;
+  //   function filterA(elt) {
+  //     if (elt.name.includes(value)) {
+  //       return true;
+  //     } else {
+  //       return false;
+  //     }
+  //   }
+  // return recipeTextArray.filter(filterA);
 };
+
+// export const filterRecipe = (value) => {
+//   if (value) {
+//     console.log(recipeTextArray.filter((elt) => elt.name.includes(value)));
+//     return recipeTextArray.filter((elt) => elt.name.includes(value));
+//   }else{
+//     return []
+//   }
+// }
 
 // update des recettes en fonction de la valeur tapée dans le champ
 const updateRecipe = (fn) => {
@@ -229,5 +240,3 @@ export const displayTagRecipe = (datas, value) => {
     updateRecipe(result);
   }
 };
-
-
