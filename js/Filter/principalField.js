@@ -10,7 +10,7 @@ import { variables } from "../utils/variables.js";
 import { globalFunctions } from "../utils/globalFunctions.js";
 import { ParamFilter } from "../utils/ParamFilter.js";
 
-export let resultsMain = []
+export let resultsMain = [];
 export let arrayAll = [];
 
 const listes = [
@@ -20,9 +20,9 @@ const listes = [
 ];
 const inputTags = Array.from(variables.inputTag);
 //console.log(inputTags);
-const error = document.querySelector('.erreur')
-  console.log(error);
-const recipesList = document.querySelector('#recipes-list')
+const error = document.querySelector(".erreur");
+console.log(error);
+const recipesList = document.querySelector("#recipes-list");
 console.log(recipesList);
 ///
 export const submitOnClick = () => {
@@ -64,133 +64,114 @@ export const submitOnClick = () => {
 
 export const inputTagSelected = () => {
   let val;
-  
-        inputTags.forEach(input => {
-          
-          input.addEventListener('input', (e) => {
-            e.preventDefault()
-            val = getSearchTerm(input)
-            console.log(val);
-            if(input === inputTags[0]){
-              
-              globalFunctions.buttonIngredientListPreview(variables.recettes, val) 
-               
-            }else if(input === inputTags[1]){
-            
-              globalFunctions.buttonApplianceListPreview(variables.recettes, val)
-                
-            }else if(input === inputTags[2]){
-              
-              globalFunctions.buttonUstensilsListPreview(variables.recettes, val)
-              
-          }
-          
-          })
-          input.addEventListener('focusout', (e) => {
-            e.preventDefault()
-            input.value = ""
-          })
 
-          
-      })
-  
-  
-  
-}
+  inputTags.forEach((input) => {
+    input.addEventListener("input", (e) => {
+      e.preventDefault();
+      val = getSearchTerm(input);
+      console.log(val);
+      if (input === inputTags[0]) {
+        globalFunctions.buttonIngredientListPreview(variables.recettes, val);
+      } else if (input === inputTags[1]) {
+        globalFunctions.buttonApplianceListPreview(variables.recettes, val);
+      } else if (input === inputTags[2]) {
+        globalFunctions.buttonUstensilsListPreview(variables.recettes, val);
+      }
+    });
+    input.addEventListener("focusout", (e) => {
+      e.preventDefault();
+      input.value = "";
+    });
+  });
+};
 
-export const unselectedTag=(event)=>{
-  const target = event.target
+export const unselectedTag = (event) => {
+  const target = event.target;
   console.log(target);
-  if(target.tagName === 'LI' || target.tagName === 'li'){
-    const val = target.innerHTML.toLowerCase()
-    target.remove()
-    const i = arrayAll.findIndex(item => item.equals(new ParamFilter(val)))
-    arrayAll.splice(i, 1)
-    if(arrayAll.length > 0){
-      updateRecipe(globalFunctions.intersect(arrayAll.map(elt => elt.values)))
-      
-    }else{
+  if (target.tagName === "LI" || target.tagName === "li") {
+    const val = target.innerHTML.toLowerCase();
+    target.remove();
+    const i = arrayAll.findIndex((item) => item.equals(new ParamFilter(val)));
+    arrayAll.splice(i, 1);
+    if (arrayAll.length > 0) {
+      updateRecipe(
+        globalFunctions.intersect(arrayAll.map((elt) => elt.values))
+      );
+    } else {
       updateRecipe(variables.recettes);
-      error.style.display = 'none'
+      error.style.display = "none";
     }
-}
-}
+  }
+};
 
 export const submitTheSearch = () => {
   let value = getSearchTerm(variables.formControl);
-  resultsMain=filterRecipe(value).map(elt => elt.recipe);
-  console.log(resultsMain);
- console.log(arrayAll);
- let find = false
-if(arrayAll.length > 0){
-  if(arrayAll.some(elt => {
-    if(!elt.equals(new ParamFilter('main'))){
-      return true
-    }
+  let newArrayText = filterRecipe(value);
+  console.log(newArrayText);
+  for (let elt of newArrayText) {
+    resultsMain.push(elt.recipe);
+    console.log(resultsMain);
+    return resultsMain;
   }
-    )){
-      arrayAll.forEach(tag => {
-        if(tag.equals(new ParamFilter('main'))){
-          tag.values = resultsMain
-          find = true
+
+  console.log(arrayAll);
+  let find = false;
+  if (arrayAll.length > 0) {
+    if (
+      arrayAll.some((elt) => {
+        if (!elt.equals(new ParamFilter("main"))) {
+          return true;
         }
       })
-      if(!find){
-        
-          arrayAll.unshift(new ParamFilter('main', resultsMain))
-        
-        
+    ) {
+      arrayAll.forEach((tag) => {
+        if (tag.equals(new ParamFilter("main"))) {
+          tag.values = resultsMain;
+          find = true;
+        }
+      });
+      if (!find) {
+        arrayAll.unshift(new ParamFilter("main", resultsMain));
       }
-      const result = globalFunctions.intersect(arrayAll.map(elt => elt.values))
-      console.log(result);
 
-      
-        updateRecipe(result)
-       
-      
-     
-      return
+      const arrayAllfilter = [];
+      for (let elt of arrayAll) {
+        arrayAllfilter.push(elt.values);
+        console.log(arrayAllfilter);
+        return arrayAllfilter;
+      }
+      const result = globalFunctions.intersect(arrayAllfilter);
+
+      updateRecipe(result);
+      return;
     }
-    console.log(arrayAll);  
-}
-
-updateRecipe(resultsMain)
-
-
+    console.log(arrayAll);
+  }
+  updateRecipe(resultsMain);
 };
 
-
-
-
 export const unselectedTheSearch = () => {
-  if(arrayAll.length > 0){
-    
-    const i = arrayAll.findIndex(item => item.equals(new ParamFilter('main', resultsMain)))
+  if (arrayAll.length > 0) {
+    const i = arrayAll.findIndex((item) =>
+      item.equals(new ParamFilter("main", resultsMain))
+    );
     console.log(i);
-    if(i === 0){
+    if (i === 0) {
       console.log(arrayAll);
-    arrayAll.splice(0, 1)
-    console.log(arrayAll);
-    const r = arrayAll.map(elt => elt.values)
-    console.log(r);
-    const resultats = globalFunctions.intersect(r);
-    console.log(resultats);
-    updateRecipe(resultats)
-    error.style.display = 'none'
+      arrayAll.splice(0, 1);
+      console.log(arrayAll);
+      const r = arrayAll.map((elt) => elt.values);
+      console.log(r);
+      const resultats = globalFunctions.intersect(r);
+      console.log(resultats);
+      updateRecipe(resultats);
+      error.style.display = "none";
     }
-      
-  }else{
-    updateRecipe(variables.recettes)
-    error.style.display = 'none'
+  } else {
+    updateRecipe(variables.recettes);
+    error.style.display = "none";
   }
-  
-   
-    
-}
-
-
-
-
+};
 
 const getSearchTerm = (input) => {
   const value = input.value.trim().toLowerCase();
@@ -198,65 +179,55 @@ const getSearchTerm = (input) => {
   return value;
 };
 
-
-
 // construction d'un tableau en fonction de la valeur tapée dans le champ principal
-export const filterRecipe = (value) => { 
-  if (value) {
-    console.log(recipeTextArray.filter((elt) => elt.name.includes(value)));
-    return recipeTextArray.filter((elt) => elt.name.includes(value));
-  }else{
-    return []
+export const filterRecipe = (value) => {
+  function filterA(elt) {
+    if (elt.name.includes(value)) {
+      return true;
+    } else {
+      return false;
+    }
   }
-}
-
+  console.log(recipeTextArray.filter(filterA));
+  return recipeTextArray.filter(filterA);
+};
 
 // update des recettes en fonction de la valeur tapée dans le champ
 const updateRecipe = (fn) => {
   let recipe = fn;
   console.log(recipe);
-  
+
   globalFunctions.display(recipe);
 
-  if(recipe.length === 0){
-    error.style.display = 'block'
+  if (recipe.length === 0) {
+    error.style.display = "block";
   }
 };
 
 export const filterTag = (datas, value) => {
   let array = datas.filter((elt) => elt.name.toLowerCase().includes(value));
   console.log(array);
-  
-  const recipeResult = array.map(item => item.recipe)
-  arrayAll.push(new ParamFilter(value, recipeResult))
- console.log(arrayAll);
- 
- const resultats = globalFunctions.intersect(arrayAll.map(item => item.values));
-console.log(resultats);
 
+  const recipeResult = array.map((item) => item.recipe);
+  arrayAll.push(new ParamFilter(value, recipeResult));
+  console.log(arrayAll);
 
+  const resultats = globalFunctions.intersect(
+    arrayAll.map((item) => item.values)
+  );
+  console.log(resultats);
 
-console.log(resultats);
- return resultats
-
-  
+  console.log(resultats);
+  return resultats;
 };
-
 
 export const displayTagRecipe = (datas, value) => {
-  const result = filterTag(datas, value)
-  if(result.length > 0){
+  const result = filterTag(datas, value);
+  if (result.length > 0) {
     updateRecipe(result);
-    //error.style.display = 'none'
-  }else{
+  } else {
     updateRecipe(result);
-      //error.style.display = 'block'
-     
   }
-  
-
 };
-
-
 
 
