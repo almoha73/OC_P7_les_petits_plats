@@ -184,24 +184,7 @@ export const filterRecipe = (value) => {
     i++;
   }
   return resultsMain;
-  //   function filterA(elt) {
-  //     if (elt.name.includes(value)) {
-  //       return true;
-  //     } else {
-  //       return false;
-  //     }
-  //   }
-  // return recipeTextArray.filter(filterA);
-};
-
-// export const filterRecipe = (value) => {
-//   if (value) {
-//     console.log(recipeTextArray.filter((elt) => elt.name.includes(value)));
-//     return recipeTextArray.filter((elt) => elt.name.includes(value));
-//   }else{
-//     return []
-//   }
-// }
+}  
 
 // update des recettes en fonction de la valeur tapée dans le champ
 const updateRecipe = (fn) => {
@@ -215,7 +198,7 @@ const updateRecipe = (fn) => {
   }
 };
 
-export const filterTag = (datas, value) => {
+const filterTag = (datas, value) => {
   let array = datas.filter((elt) => elt.name.toLowerCase().includes(value));
   console.log(array);
 
@@ -232,11 +215,11 @@ export const filterTag = (datas, value) => {
   return resultats;
 };
 
-export const displayTagRecipe = (datas, value) => {
+const displayTagRecipe = (datas, value) => {
   const result = filterTag(datas, value);
   if (result.length > 0) {
     updateRecipe(result);
   } else {
     updateRecipe(result);
   }
-};
+}

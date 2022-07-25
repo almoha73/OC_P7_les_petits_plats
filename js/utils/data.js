@@ -60,8 +60,11 @@ function makeText(recipe) {
         .concat(", ")
         .concat(description.toLowerCase()),
       { ...recipe }
+      
+      
     )
   );
+  console.log(recipeTextArray);
 }
 
 function makeIngredient(recipe) {
