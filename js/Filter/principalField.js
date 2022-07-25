@@ -136,27 +136,17 @@ if(arrayAll.length > 0){
         }
       })
       if(!find){
-        
-          arrayAll.unshift(new ParamFilter('main', resultsMain))
-        
-        
+          arrayAll.unshift(new ParamFilter('main', resultsMain))  
       }
       const result = globalFunctions.intersect(arrayAll.map(elt => elt.values))
       console.log(result);
-
-      
         updateRecipe(result)
-       
-      
-     
       return
     }
     console.log(arrayAll);  
 }
 
 updateRecipe(resultsMain)
-
-
 };
 
 
@@ -164,7 +154,6 @@ updateRecipe(resultsMain)
 
 export const unselectedTheSearch = () => {
   if(arrayAll.length > 0){
-    
     const i = arrayAll.findIndex(item => item.equals(new ParamFilter('main', resultsMain)))
     console.log(i);
     if(i === 0){
@@ -177,15 +166,12 @@ export const unselectedTheSearch = () => {
     console.log(resultats);
     updateRecipe(resultats)
     error.style.display = 'none'
-    }
-      
+    }    
   }else{
     updateRecipe(variables.recettes)
     error.style.display = 'none'
   }
-  
-   
-    
+     
 }
 
 
@@ -214,10 +200,7 @@ export const filterRecipe = (value) => {
 // update des recettes en fonction de la valeur tapée dans le champ
 const updateRecipe = (fn) => {
   let recipe = fn;
-  console.log(recipe);
-  
   globalFunctions.display(recipe);
-
   if(recipe.length === 0){
     error.style.display = 'block'
   }
@@ -225,36 +208,19 @@ const updateRecipe = (fn) => {
 
 export const filterTag = (datas, value) => {
   let array = datas.filter((elt) => elt.name.toLowerCase().includes(value));
-  console.log(array);
-  
   const recipeResult = array.map(item => item.recipe)
   arrayAll.push(new ParamFilter(value, recipeResult))
- console.log(arrayAll);
- 
  const resultats = globalFunctions.intersect(arrayAll.map(item => item.values));
-console.log(resultats);
-
-
-
-console.log(resultats);
- return resultats
-
-  
+ return resultats 
 };
 
 
 export const displayTagRecipe = (datas, value) => {
   const result = filterTag(datas, value)
   if(result.length > 0){
-    updateRecipe(result);
-    //error.style.display = 'none'
+    updateRecipe(result); 
   }else{
     updateRecipe(result);
-      //error.style.display = 'block'
-     
-  }
-  
-
 };
 
 
