@@ -118,7 +118,7 @@ export const unselectedTag=(event)=>{
 
 export const submitTheSearch = () => {
   let value = getSearchTerm(variables.formControl);
-  resultsMain=filterRecipe(value).map(elt => elt.recipe);
+  resultsMain=filterRecipe(value)
   console.log(resultsMain);
  console.log(arrayAll);
  let find = false
@@ -195,7 +195,7 @@ const getSearchTerm = (input) => {
 export const filterRecipe = (value) => { 
   if (value) {
     console.log(recipeTextArray.filter((elt) => elt.name.includes(value)));
-    return recipeTextArray.filter((elt) => elt.name.includes(value));
+    return recipeTextArray.filter((elt) => elt.name.includes(value)).map(elt => elt.recipe);
   }else{
     return []
   }
