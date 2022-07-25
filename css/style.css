@@ -39,7 +39,7 @@
 }
 .form-control-primary::placeholder {
   color: inherit;
-  opacity: 25%;
+  opacity: 40%;
 }
 .form-control-primary:focus {
   outline: none;
@@ -55,6 +55,11 @@
 @media only screen and (max-width: 1500px) {
   .nav-secondary {
     justify-content: center;
+  }
+}
+@media only screen and (max-width: 440px) {
+  .nav-secondary {
+    gap: 1rem;
   }
 }
 
@@ -85,6 +90,7 @@
 @media only screen and (max-width: 420px) {
   .dropdown .form-control {
     padding: 1rem 0;
+    background-position: center;
   }
 }
 .dropdown .form-control::placeholder {
@@ -169,6 +175,11 @@
   transform-origin: top left;
   transition: transform 150ms ease-in-out;
 }
+@media only screen and (max-width: 440px) {
+  .dropdown-menu__ingredients, .dropdown-menu__appliances, .dropdown-menu__ustensils {
+    padding: 0 0.5rem 0.5rem;
+  }
+}
 
 .dropdown-menu__item {
   color: #fff;
@@ -178,6 +189,14 @@
   font-weight: 400;
   opacity: 0;
   transition: opacity 300ms ease-in-out;
+}
+@media only screen and (max-width: 440px) {
+  .dropdown-menu__item {
+    font-size: 0.8rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 }
 
 .dropdown.active > .form-control {

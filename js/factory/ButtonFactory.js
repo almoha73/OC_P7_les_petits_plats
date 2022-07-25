@@ -18,7 +18,7 @@ export class ButtonMenuFactory {
     const listIngredients = Array.from(this.ingredients).sort();
     //console.log(listIngredients);
     listIngredients.forEach((e) => {
-      const elt = `<li class="dropdown-menu__item dropdown-menu__item-ingredients" data-filter="ingredients">${e}</li>`;
+      const elt = `<li class="dropdown-menu__item dropdown-menu__item-ingredients" title="${e}" data-filter="ingredients">${e}</li>`;
       // listIngredients.push(e)
       // console.log(listIngredients);
       variables.buttonIngredientsList.innerHTML += elt;

@@ -11,7 +11,9 @@
       justify-content: center;
       
     }
-    
+    @media only screen and (max-width : 440px){
+      gap: 1rem
+    }
   }
   
   /* DROPDOWN */
@@ -37,6 +39,7 @@
         }
       @media only screen and (max-width : 420px){
         padding: 1rem 0;
+        background-position: center;
       }
       &::placeholder {
         color: abstracts.$color-white;
@@ -128,7 +131,9 @@
     transform: scaleY(0);
     transform-origin: top left;
     transition: transform 150ms ease-in-out;
-    
+    @media only screen and (max-width : 440px){
+      padding: 0 0.5rem 0.5rem;
+    }
   }
   
   .dropdown-menu__item {
@@ -139,6 +144,12 @@
     font-weight: 400;
     opacity: 0;
     transition: opacity 300ms ease-in-out;
+    @media only screen and (max-width : 440px){
+      font-size: 0.8rem;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
   }
   
   .dropdown.active > .form-control {
