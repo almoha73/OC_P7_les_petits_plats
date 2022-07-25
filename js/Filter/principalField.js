@@ -141,12 +141,15 @@ if(arrayAll.length > 0){
       const result = globalFunctions.intersect(arrayAll.map(elt => elt.values))
       console.log(result);
         updateRecipe(result)
+        
       return
     }
     console.log(arrayAll);  
 }
-
 updateRecipe(resultsMain)
+if(resultsMain.length > 0){
+  error.style.display = 'none'
+}
 };
 
 
@@ -160,12 +163,12 @@ export const unselectedTheSearch = () => {
       console.log(arrayAll);
     arrayAll.splice(0, 1)
     console.log(arrayAll);
+    
     const r = arrayAll.map(elt => elt.values)
     console.log(r);
     const resultats = globalFunctions.intersect(r);
     console.log(resultats);
     updateRecipe(resultats)
-    error.style.display = 'none'
     }    
   }else{
     updateRecipe(variables.recettes)
@@ -201,7 +204,7 @@ export const filterRecipe = (value) => {
 const updateRecipe = (fn) => {
   let recipe = fn;
   globalFunctions.display(recipe);
-  if(recipe.length === 0){
+  if(recipe.length == 0){
     error.style.display = 'block'
   }
 };
