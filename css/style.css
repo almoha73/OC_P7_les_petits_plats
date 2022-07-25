@@ -240,6 +240,11 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+@media only screen and (max-width: 400px) {
+  .card .cardBody-first .card-body-first h5.card-title {
+    font-size: 1.2rem;
+  }
+}
 .card .cardBody-first .card-body-first .time-icon {
   display: flex;
   justify-content: flex-end;
