@@ -149,6 +149,8 @@ if(arrayAll.length > 0){
 updateRecipe(resultsMain)
 if(resultsMain.length > 0){
   error.style.display = 'none'
+}else{
+  error.style.display = 'block'
 }
 };
 
@@ -206,6 +208,8 @@ const updateRecipe = (fn) => {
   globalFunctions.display(recipe);
   if(recipe.length == 0){
     error.style.display = 'block'
+  }else{
+    error.style.display = 'none'
   }
 };
 
