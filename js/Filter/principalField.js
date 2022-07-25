@@ -222,6 +222,7 @@ export const displayTagRecipe = (datas, value) => {
   }else{
     updateRecipe(result);
 };
+}
 
 
 
