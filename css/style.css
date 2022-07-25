@@ -25,10 +25,6 @@
   line-height: 1.375rem;
 }
 
-.nav-primary {
-  margin-bottom: 1.25rem;
-}
-
 .form-control-primary {
   width: 100%;
   padding: 1.4375rem 4.5rem 1.5rem 1.375rem;
@@ -39,7 +35,7 @@
   background-size: 33px 33px;
   color: #000;
   font-weight: 400;
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
 }
 .form-control-primary::placeholder {
   color: inherit;
@@ -54,8 +50,12 @@
 .nav-secondary {
   display: flex;
   align-items: flex-start;
-  margin-bottom: 1.5625rem;
-  gap: 1.25rem;
+  gap: 3rem;
+}
+@media only screen and (max-width: 1500px) {
+  .nav-secondary {
+    justify-content: center;
+  }
 }
 
 /* DROPDOWN */
@@ -77,9 +77,36 @@
   color: #fff;
   font-weight: 700;
 }
+@media only screen and (max-width: 500px) {
+  .dropdown .form-control {
+    background-position: center;
+  }
+}
+@media only screen and (max-width: 420px) {
+  .dropdown .form-control {
+    padding: 1rem 0;
+  }
+}
 .dropdown .form-control::placeholder {
   color: #fff;
   opacity: 1;
+}
+@media only screen and (max-width: 500px) {
+  .dropdown .form-control::placeholder {
+    opacity: 0;
+  }
+}
+.dropdown .form-control-appliance:focus {
+  outline: none;
+  box-shadow: 0px 0px 10px 1px rgb(50, 130, 247);
+}
+.dropdown .form-control-ingredient:focus {
+  outline: none;
+  box-shadow: 0px 0px 10px 1px #ed6454;
+}
+.dropdown .form-control-ustensil:focus {
+  outline: none;
+  box-shadow: 0px 0px 10px 4px rgb(104, 217, 164);
 }
 .dropdown.active {
   flex-basis: 100%;
@@ -122,7 +149,7 @@
   /* color of the scroll thumb */
   border-radius: 20px;
   /* roundness of the scroll thumb */
-  border: 3px solid blue;
+  border: 3px solid #fff;
 }
 
 .dropdown-menu__ingredients, .dropdown-menu__appliances, .dropdown-menu__ustensils {
@@ -130,7 +157,7 @@
   top: calc(100% - 5px);
   display: grid;
   width: 100%;
-  padding: 0 0.9375rem 0.9375rem;
+  padding: 0 1rem 1rem;
   margin: 0;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
@@ -170,16 +197,16 @@
 }
 
 .card {
-  min-width: 380px;
+  min-width: 300px;
   max-width: 450px;
   min-height: 364px;
   max-height: 400px;
-  margin-bottom: 40px;
   box-shadow: 2px 0px 7px 0px #C7BEBE;
   border-radius: 6px;
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
+  align-items: center;
   cursor: pointer;
 }
 .card:hover {
@@ -222,9 +249,17 @@
 .card .cardBody-first .card-body-first .time-icon span {
   margin-left: 5px;
 }
+@media only screen and (max-width: 400px) {
+  .card .cardBody-first .card-body-first .time-icon span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
 .card .cardBody-second {
   overflow: hidden;
   width: 100%;
+  height: 100%;
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 40px;
@@ -265,7 +300,8 @@ h1.erreur {
 
 .filters-list {
   display: flex;
-  align-items: flex-start;
+  flex-wrap: wrap;
+  align-items: center;
   justify-content: flex-start;
   padding: 0;
   gap: 1rem;
@@ -273,7 +309,7 @@ h1.erreur {
 }
 
 .filter-list__item {
-  padding: 0.625rem 3.4375rem 0.625rem 1.25rem;
+  padding: 0.625rem 3.5rem 0.625rem 1.25rem;
   background-color: transparent;
   background-image: url("../images/cross.svg");
   background-position: center right 22px;
@@ -286,8 +322,7 @@ h1.erreur {
   font-size: 0.875rem;
   font-weight: 700;
   line-height: 1.05rem;
-  margin-bottom: 10px;
-  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 .filter-list__item-ingredients {
@@ -324,12 +359,40 @@ body {
   max-width: 100rem;
   margin: 0 auto;
 }
+@media only screen and (max-width: 1530px) {
+  .container {
+    margin: 0 7rem;
+  }
+}
+@media only screen and (max-width: 1230px) {
+  .container {
+    margin: 0 4rem;
+  }
+}
+@media only screen and (max-width: 1090px) {
+  .container {
+    margin: 0 auto;
+  }
+}
 
 .fluid-grid {
-  margin-top: 30px;
+  margin-top: 50px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  gap: 60px;
+}
+@media only screen and (max-width: 1500px) {
+  .fluid-grid {
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+  }
+}
+@media only screen and (max-width: 1050px) {
+  .fluid-grid {
+    justify-content: center;
+  }
 }
 
 .display-none {
