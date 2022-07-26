@@ -8,15 +8,16 @@ import { TextCard } from "../factory/TextCard.js";
 import { variables } from "./variables.js";
 
 let recettes = variables.recettes;
-export let AllIds = [];
+
 export let ingredientsArray = [];
 export let appareils = [];
 export let ustensiles = [];
 export let recipeTextArray = [];
 
+////Construction de nouveaux tableaux plus simples à partir de recipes.js(tableau complexe) de type{nom, Id, recette}
+
 export function loadData() {
   recettes.forEach((elt) => {
-    //makeID(elt);
     makeText(elt);
     makeIngredient(elt);
     makeUstensils(elt);
@@ -34,22 +35,13 @@ export function loadData() {
 console.log(ingredientsArray,
   appareils,
   ustensiles,
-  recipeTextArray,
-  recettes,);
-
-// function makeID(recipe) {
-//   const { id } = recipe;
-//   AllIds.push(id);
-// }
+  recipeTextArray,);
 
 function makeText(recipe) {
   const { ingredients, name, id, description } = recipe;
-  //console.log(ingredients, recipe);
-  // const i = ingredients.map((ing) => ing.ingredient.toLowerCase());
   const textIngredient = ingredients.reduce((accumulateur, current) => {
     return accumulateur.concat(" ").concat(current.ingredient.toLowerCase());
   }, "");
- //console.log(textIngredient);
   recipeTextArray.push(
     new TextCard(
       id,
@@ -67,7 +59,6 @@ function makeText(recipe) {
 function makeIngredient(recipe) {
   const { ingredients, id } = recipe;
   for (let i of ingredients) {
-    //console.log(i.ingredient);
     ingredientsArray.push(new Ingredients(i.ingredient, id, { ...recipe }));
   }
 }

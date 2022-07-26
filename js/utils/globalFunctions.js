@@ -13,8 +13,6 @@ export const globalFunctions = {
     
   },
 
- 
-
   newIntersectionObj(intersectionArray, array1){
     
     for(let el of intersectionArray){
