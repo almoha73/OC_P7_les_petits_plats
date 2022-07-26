@@ -118,10 +118,10 @@ export const unselectedTag=(event)=>{
 
 export const submitTheSearch = () => {
   let value = getSearchTerm(variables.formControl);
-  resultsMain=filterRecipe(value)
+  resultsMain.splice(0, resultsMain.length)
+  filterRecipe(value);
   console.log(resultsMain);
- console.log(arrayAll);
- let find = false
+  let find = false;
 if(arrayAll.length > 0){
   if(arrayAll.some(elt => {
     if(!elt.equals(new ParamFilter('main'))){
@@ -192,14 +192,16 @@ const getSearchTerm = (input) => {
 
 
 // construction d'un tableau en fonction de la valeur tapée dans le champ principal
-export const filterRecipe = (value) => { 
-  if (value) {
-    console.log(recipeTextArray.filter((elt) => elt.name.includes(value)));
-    return recipeTextArray.filter((elt) => elt.name.includes(value)).map(elt => elt.recipe);
-  }else{
-    return []
+export const filterRecipe = (value) => {
+  let i = 0;
+  while (i < recipeTextArray.length) {
+    if (recipeTextArray[i].name.includes(value)) {
+      resultsMain.push(recipeTextArray[i].recipe);
+    }
+    i++;
   }
-}
+  return resultsMain;
+}  
 
 
 // update des recettes en fonction de la valeur tapée dans le champ
