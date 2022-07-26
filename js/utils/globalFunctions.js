@@ -13,15 +13,15 @@ export const globalFunctions = {
     
   },
 
-  newIntersectionObj(intersectionArray, array1){
+  // newIntersectionObj(intersectionArray, array1){
     
-    for(let el of intersectionArray){
-      let newRecipeArray = variables.recettes.filter(elt => elt.id === el)
-      array1.push(newRecipeArray)
-    }
-   return array1 = array1.flat()
+  //   for(let el of intersectionArray){
+  //     let newRecipeArray = variables.recettes.filter(elt => elt.id === el)
+  //     array1.push(newRecipeArray)
+  //   }
+  //  return array1 = array1.flat()
     
-  },
+  // },
 
   buttonListPreview(array) {
     const buttonMenuFactory = new ButtonMenuFactory();
@@ -48,12 +48,12 @@ export const globalFunctions = {
     variables.buttonApplianceList.innerHTML = "";
   },
 
-  // Fonction générale pour enlever les doublons d'un array d'objets
-  duplicateRemove(array) {
-    let uniq = {};
-  return array.filter(obj => !uniq[obj.id] && (uniq[obj.id] = true))
+  // // Fonction générale pour enlever les doublons d'un array d'objets
+  // duplicateRemove(array) {
+  //   let uniq = {};
+  // return array.filter(obj => !uniq[obj.id] && (uniq[obj.id] = true))
    
-  },
+  // },
 
   intersect(tabs){
     console.log(tabs)
@@ -72,15 +72,15 @@ export const globalFunctions = {
     }
   },
 
-  filterIngredients(object, filterValue) {
-    const n = object.ingredients.find(({ ingredient }) =>
-      ingredient.toLowerCase().includes(filterValue)
-    );
-    if (n) {
-        console.log(n);
-      return true;
-    } else return false;
-  },
+  // filterIngredients(object, filterValue) {
+  //   const n = object.ingredients.find(({ ingredient }) =>
+  //     ingredient.toLowerCase().includes(filterValue)
+  //   );
+  //   if (n) {
+  //       console.log(n);
+  //     return true;
+  //   } else return false;
+  // },
 
 
   display(array){

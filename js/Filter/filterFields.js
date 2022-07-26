@@ -10,8 +10,8 @@ import { variables } from "../utils/variables.js";
 import { globalFunctions } from "../utils/globalFunctions.js";
 import { ParamFilter } from "../utils/ParamFilter.js";
 
-export let resultsMain = []; /// stoque les objets complexes de type recettes filtrés dans le champ principal
-export let arrayAll = []; /// stoque les objets de type ParamFilter avec toujours en index 0 resultsMain issu de la recherche dans le champ principal
+export let resultsMain = []; /// stoque les objets complexes de type recettes, filtrés dans le champ principal
+export let arrayAll = []; /// stoque les objets de type ParamFilter avec toujours en index 0 values = resultsMain issu de la recherche dans le champ principal si elle existe
 
 const listes = [
   variables.buttonIngredientsList,
@@ -49,7 +49,6 @@ export const submitTheSearch = () => {
   let value = getSearchTerm(variables.formControl);
   resultsMain.splice(0, resultsMain.length);
   filterRecipe(value);
-  console.log(resultsMain, arrayAll);
   let find = false;
   if (arrayAll.length > 0) {
     if (
@@ -172,7 +171,6 @@ export const inputTagSelected = () => {
     input.addEventListener("input", (e) => {
       e.preventDefault();
       val = getSearchTerm(input);
-      console.log(val);
       if (input === inputTags[0]) {
         globalFunctions.buttonIngredientListPreview(variables.recettes, val);
       } else if (input === inputTags[1]) {

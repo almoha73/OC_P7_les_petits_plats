@@ -16,8 +16,8 @@ export class Recipe {
     this.newIngredient = [];
     this.undefinedManage();
   }
+
   buildCard() {
-    
     variables.container.innerHTML += `
         <div id="${this.id}" data-appliance="${
       this.appliance
@@ -65,5 +65,3 @@ export class Recipe {
     }
   }
 }
-
-
