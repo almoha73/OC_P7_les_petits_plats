@@ -109,12 +109,6 @@ export const submitTheSearch = () => {
   resultsMain.splice(0, resultsMain.length)
   filterRecipe(value);
   console.log(resultsMain);
-  // let newArrayText = filterRecipe(value);
-  // console.log(newArrayText);
-  // for (let elt of newArrayText) {
-  //   resultsMain.push(elt.recipe);
-  //   return resultsMain;
-  // }
   let find = false;
   if (arrayAll.length > 0) {
     if (
@@ -144,6 +138,12 @@ export const submitTheSearch = () => {
     }
   }
   updateRecipe(resultsMain);
+
+  if(resultsMain.length > 0){
+    error.style.display = 'none'
+  }else{
+    error.style.display = 'block'
+  }
 };
 
 export const unselectedTheSearch = () => {
@@ -195,6 +195,8 @@ const updateRecipe = (fn) => {
 
   if (recipe.length === 0) {
     error.style.display = "block";
+  }else{
+    error.style.display = "none";
   }
 };
 
