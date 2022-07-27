@@ -51,7 +51,8 @@ function makeText(recipe) {
         .concat(textIngredient)
         .concat(", ")
         .concat(description.toLowerCase()),
-      { ...recipe }
+      //{ ...recipe }, 
+      recipe,
     )
   );
 }
