@@ -47,8 +47,9 @@ export const filterRecipe = (value) => {
 ///construction du arrayAll de type ParamFilter//intersection//Affichage
 export const submitTheSearch = () => {
   let value = getSearchTerm(variables.formControl);
-  resultsMain.splice(0, resultsMain.length);
-  filterRecipe(value);
+  resultsMain = filterRecipe(value);
+  console.log(resultsMain);
+  console.log(arrayAll);
   let find = false;
   if (arrayAll.length > 0) {
     if (
