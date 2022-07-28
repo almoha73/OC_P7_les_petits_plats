@@ -34,14 +34,14 @@ const getSearchTerm = (input) => {
 
 ///construction du recipesMain à l'aide du tableau recipeTextArray ====> data.js
 export const filterRecipe = (value) => {
-  let i = 0;
-  while (i < recipeTextArray.length) {
-    if (recipeTextArray[i].name.includes(value)) {
-      resultsMain.push(recipeTextArray[i].recipe);
-    }
-    i++;
+  if (value) {
+    console.log(recipeTextArray.filter((elt) => elt.name.includes(value)));
+    return recipeTextArray
+      .filter((elt) => elt.name.includes(value))
+      .map((elt) => elt.recipe);
+  } else {
+    return [];
   }
-  return resultsMain;
 };
 
 ///construction du arrayAll de type ParamFilter//intersection//Affichage
