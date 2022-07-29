@@ -39,9 +39,11 @@ console.log(ingredientsArray,
 
 function makeText(recipe) {
   const { ingredients, name, id, description } = recipe;
+  
   const textIngredient = ingredients.reduce((accumulateur, current) => {
     return accumulateur.concat(" ").concat(current.ingredient.toLowerCase());
   }, "");
+  
   recipeTextArray.push(
     new TextCard(
       id,
@@ -56,6 +58,7 @@ function makeText(recipe) {
     )
   );
 }
+
 
 function makeIngredient(recipe) {
   const { ingredients, id } = recipe;

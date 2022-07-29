@@ -13,6 +13,7 @@ export class ButtonMenuFactory {
     listIngredients.forEach((e) => {
       const elt = `<li class="dropdown-menu__item dropdown-menu__item-ingredients" title="${e}" data-filter="ingredients">${e}</li>`;
       variables.buttonIngredientsList.innerHTML += elt;
+      
       return listIngredients;
     });
 
@@ -20,6 +21,7 @@ export class ButtonMenuFactory {
     listAppliance.forEach((e) => {
       const elt = `<li class="dropdown-menu__item dropdown-menu__item-appliances" data-filter="appliances">${e}</li>`;
       variables.buttonApplianceList.innerHTML += elt;
+      
       return listAppliance;
     });
 
@@ -27,6 +29,7 @@ export class ButtonMenuFactory {
     listUstensils.forEach((e) => {
       const elt = `<li class="dropdown-menu__item dropdown-menu__item-ustensils" data-filter="ustensils">${e}</li>`;
       variables.buttonUstensilsList.innerHTML += elt;
+      
       return listUstensils;
     });
   }

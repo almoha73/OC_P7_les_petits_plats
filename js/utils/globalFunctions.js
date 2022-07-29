@@ -4,6 +4,13 @@ import { variables } from "./variables.js";
 
 
 export const globalFunctions = {
+  display(array){
+    variables.container.innerHTML = "";
+    globalFunctions.recipesPreview(array);
+    globalFunctions.buttonReset();
+    globalFunctions.buttonListPreview(array);
+},
+
   recipesPreview(array) {
     variables.container.innerHTML = "";
     array.forEach((recipe) => {
@@ -12,7 +19,6 @@ export const globalFunctions = {
     });
     
   },
-
 
   buttonListPreview(array) {
     const buttonMenuFactory = new ButtonMenuFactory();
@@ -55,12 +61,7 @@ export const globalFunctions = {
     }
   },
 
-  display(array){
-        variables.container.innerHTML = "";
-        globalFunctions.recipesPreview(array);
-        globalFunctions.buttonReset();
-        globalFunctions.buttonListPreview(array);
-  },
+  
 
   
 };
