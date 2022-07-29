@@ -4,7 +4,7 @@ import {
   appareils,
   ustensiles,
 } from "../utils/data.js";
-import { Tags } from "../Tags/tag.js";
+import { Tags } from "../factory/Tag.js";
 import {} from "../index.js";
 import { variables } from "../utils/variables.js";
 import { globalFunctions } from "../utils/globalFunctions.js";
@@ -117,7 +117,6 @@ export const submitOnClick = () => {
         const value = e.target.innerHTML.toLowerCase();
         const node = e.target.parentElement;
         const id = node.getAttribute("id");
-        console.log(id);
 
         switch (id) {
           case "ingredients": {
@@ -190,7 +189,6 @@ export const inputTagSelected = () => {
 ///Fonction de suppression des tag(s)/réactualisation de l'intersection/affichage
 export const unselectedTag = (event) => {
   const target = event.target;
-  console.log(target);
   if (target.tagName === "LI" || target.tagName === "li") {
     const val = target.innerHTML.toLowerCase();
     target.remove();

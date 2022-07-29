@@ -1,11 +1,9 @@
-//import {} from "../index.js";
-//import { recipes } from "../data/recipes.js";
+
 import { variables } from "../utils/variables.js";
 
 export class ButtonMenuFactory {
   constructor() {
     this.ingredients = new Set();
-    //console.log(this.ingredients);
     this.appliance = new Set();
     this.ustensils = new Set();
   }
